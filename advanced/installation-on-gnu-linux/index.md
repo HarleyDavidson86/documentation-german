@@ -1,34 +1,35 @@
-# Title: Installation on GNU/Linux
+# Title: Installation unter GNU/Linux
 <!-- Position: 5 -->
 ---
-All examples are out of the box installation, with Nginx Webserver. If you have the steps for other distributions, you can publish it on the [forum](https://forum.bludit.org) or just edit this page on Github, you can find a button at the end of the page with the link.
+Alle folgenden Beispiele sind Out-of-the-Box Installationen mit dem Nginx Webserver.
+Falls für andere Distributionen weitere Schritte erforderlich sind, teile uns diese bitte über das [Forum](https://forum.bludit.org) mit oder bearbeite einfach diese Seite auf Github (Einen Link findest du am Ende dieser Seite).
 
-### Content
-1. [Installation on Ubuntu 16.04](#ubuntu)
-2. [Installation on Centos 7 / RedHat 7](#centos)
+### Inhalt
+1. [Installation unter Ubuntu 16.04](#ubuntu)
+2. [Installation unter Centos 7 / RedHat 7](#centos)
 
 ---
 
-## <a id="ubuntu"></a> Installation on Ubuntu 16.04 LTS
+## <a id="ubuntu"></a> Installation unter Ubuntu 16.04 LTS
 
-Considerations:
-- PHP-FPM is running under the username `www-data`.
-- PHP-FPM is listen on Unix socket on `unix:/run/php/php7.0-fpm.sock`.
-- Nginx is running under the username `www-data`.
-- You don't have installed any other webserver.
-- This is a basic configuration, considere read more for production environments.
+Vorbedingungen:
+- PHP-FPM läuft unter dem Usernamen `www-data`.
+- PHP-FPM horcht auf den Unix socket auf `unix:/run/php/php7.0-fpm.sock`.
+- Nginx läuft unter dem Usernamen `www-data`.
+- Es ist kein anderer Webserver installiert.
+- Dies ist eine Basisinstallation. Lies das 'Read more' für Produktivumgebungen.
 
-Install Nginx Webserver, PHP and some tools.
+Installation des Nginx Webserver, PHP und nützlichen Tools.
 ```
 $ sudo apt install -y nginx php-fpm php-dom php-mbstring php-cli php-gd php-opcache unzip wget
 ```
 
-Configure Nginx.
+Konfiguration Nginx.
 ```
 $ sudo rm -f /etc/nginx/sites-enabled/*
 ```
 
-Add a new file with the virtual server block in `/etc/nginx/conf.d/bludit.conf`
+Hinzufügen einer neuen Datei mit dem Virtual Server Block unter `/etc/nginx/conf.d/bludit.conf`
 ```
 server {
 	listen 80;
@@ -47,7 +48,7 @@ server {
 }
 ```
 
-Download the latest version of Bludit and uncompress it.
+Herunterladen und Entpacken der neuesten Bludit-Version.
 ```
 $ mkdir /www
 $ cd /www
@@ -56,35 +57,35 @@ $ unzip bludit_latest.zip
 $ sudo chown -R www-data:www-data /www
 ```
 
-Restart the services to load the new configurations.
+Neustarten der Services damit die neue Konfiguration herangezogen wird.
 ```
 $ sudo service php7.0-fpm restart
 $ sudo service nginx restart
 ```
 
-Open your browser and navigate to http://localhost, finish with the installation.
+Im Browser nun die Seite http://localhost um die Installation abzuschliessen.
 
 ---
 
-## <a id="centos"></a> Installation on Centos 7 / Red Hat 7
+## <a id="centos"></a> Installation unter Centos 7 / Red Hat 7
 
-Considerations:
-- PHP-FPM is running under the username `nginx`.
-- PHP-FPM is listen on Unix socket on `unix:/run/php/php-fpm.sock`.
-- Nginx is running under the username `nginx`.
-- You don't have installed any other webserver.
-- This is a basic configuration, considere read more for production environments.
+Vorbedingungen:
+- PHP-FPM läuft unter dem Usernamen `nginx`.
+- PHP-FPM horcht auf den Unix socket auf `unix:/run/php/php-fpm.sock`.
+- Nginx läuft unter dem Usernamen `nginx`.
+- Es ist kein anderer Webserver installiert.
+- Dies ist eine Basisinstallation. Lies das 'Read more' für Produktivumgebungen.
 
 ```
 $ sudo yum install -y epel-release
 ```
 
-Install Nginx Webserver, PHP and some tools.
+Installation des Nginx Webserver, PHP und nützlichen Tools.
 ```
 $ yum install -y nginx php-fpm php-cli php-dom php-mbstring php-zip php-gd
 ```
 
-Configure Nginx, add a new file with the virtual server block in `/etc/nginx/conf.d/bludit.conf`
+Konfiguration Nginx und Hinzufügen einer neuen Datei mit dem Virtual Server Block unter `/etc/nginx/conf.d/bludit.conf`
 ```
 server {
 	listen 80;
@@ -103,7 +104,7 @@ server {
 }
 ```
 
-Download the latest version of Bludit and uncompress it.
+Herunterladen und Entpacken der neuesten Bludit-Version.
 ```
 $ mkdir /www
 $ cd /www
@@ -112,10 +113,10 @@ $ unzip bludit_latest.zip
 $ sudo chown -R nginx:nginx /www
 ```
 
-Restart the services to load the new configurations.
+Neustarten der Services damit die neue Konfiguration herangezogen wird.
 ```
 $ sudo systemctl php-fpm restart
 $ sudo systemctl nginx restart
 ```
 
-Open your browser and navigate to http://localhost, finish with the installation.
+Im Browser nun die Seite http://localhost um die Installation abzuschliessen.
